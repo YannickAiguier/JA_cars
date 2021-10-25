@@ -13,7 +13,8 @@ public class CarController {
 	
 	@GetMapping(value="/cars/{id}")
 	public String show(@PathVariable int id) {
-		return "La voiture avec l'id " + id;
+		Car myCar = new Car(id, "Peugeot", "206", "beige");
+		return myCar.toString();
 	}
 
 }

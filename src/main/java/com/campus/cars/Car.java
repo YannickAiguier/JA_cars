@@ -2,20 +2,20 @@ package com.campus.cars;
 
 public class Car {
 	private int id;
-	private String modele;
 	private String marque;
+	private String modele;
 	private String couleur;
 	
 	/**
 	 * @param id
-	 * @param modele
 	 * @param marque
+	 * @param modele
 	 * @param couleur
 	 */
-	public Car(int id, String modele, String marque, String couleur) {
+	public Car(int id, String marque, String modele, String couleur) {
 		this.id = id;
-		this.modele = modele;
 		this.marque = marque;
+		this.modele = modele;
 		this.couleur = couleur;
 	}
 
@@ -33,19 +33,6 @@ public class Car {
 		this.id = id;
 	}
 
-	/**
-	 * @return the modele
-	 */
-	public String getModele() {
-		return modele;
-	}
-
-	/**
-	 * @param modele the modele to set
-	 */
-	public void setModele(String modele) {
-		this.modele = modele;
-	}
 
 	/**
 	 * @return the marque
@@ -59,6 +46,20 @@ public class Car {
 	 */
 	public void setMarque(String marque) {
 		this.marque = marque;
+	}
+
+	/**
+	 * @return the modele
+	 */
+	public String getModele() {
+		return modele;
+	}
+	
+	/**
+	 * @param modele the modele to set
+	 */
+	public void setModele(String modele) {
+		this.modele = modele;
 	}
 
 	/**
@@ -77,7 +78,7 @@ public class Car {
 
 	@Override
 	public String toString() {
-		return "Car [id=" + id + ", modele=" + modele + ", marque=" + marque + ", couleur=" + couleur + "]";
+		return "Car [id=" + id + ", marque=" + marque + ", modele=" + modele + ", couleur=" + couleur + "]";
 	}
 	
 	
