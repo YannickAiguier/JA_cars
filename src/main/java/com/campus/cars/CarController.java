@@ -44,8 +44,13 @@ public class CarController {
 	
 	// indique que la méthode répondra à une requête GET
 	@GetMapping(value="/cars/{id}")
-	public Car show(@PathVariable int id) {
-		return null;
+	public String show(@PathVariable int id, Model model) {
+		for (Car car : myCars) {
+			if (car.getId() == id) {
+				model.addAttribute("car", car);
+			}
+		}
+		return "car";
 	}
 
 }

@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
    <head>
       <meta charset="UTF-8" />
-      <title>Cars List</title>
+      <title>Just a Car</title>
       <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
    </head>
    <body>
-      <h1>Cars List</h1>
+      <h1>This Car</h1>
       <br/>
       <div>
          <table border="1">
@@ -14,16 +14,14 @@
                <th>Marque</th>
                <th>Modèle</th>
                <th>Couleur</th>
-               <th></th>
             </tr>
-            <tr th:each ="car : ${cars}">
-               <td th:utext="${car.marque}">...</a></td>
+            <tr>
+               <td th:utext="${car.marque}">...</td>
                <td th:utext="${car.modele}">...</td>
                <td th:utext="${car.couleur}">...</td>
-               <td><a th:href="@{'/cars/' + ${car.id}}">=></a></td>
             </tr>
          </table>
       </div>
-      <a href="/">Accueil</a>
+      <a href="/cars">Retour</a>
    </body>
 </html>
