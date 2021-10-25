@@ -1,5 +1,6 @@
 package com.campus.cars;
 
+//la classe des voitures
 public class Car {
 	private int id;
 	private String marque;
