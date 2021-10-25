@@ -54,13 +54,14 @@ public class CarDao {
 		return null;
 	}
 
-	public void delete(int id) {
+	public Boolean delete(int id) {
 		for (Car myCar : cars) {
 			if (myCar.getId() == id) {
 				cars.remove(myCar);
-				break;
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	private int getLastId() {
