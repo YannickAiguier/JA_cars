@@ -34,15 +34,33 @@ public class CarDao {
 	}
 
 	public Car save(Car car) {
-		return null;
+		Car tmpCar = new Car(getLastId()+1, car.getMarque(), car.getModele(), car.getCouleur());
+		cars.add(tmpCar);
+		return tmpCar;
 	}
 
 	public Car update(Car car, int id) {
+		int index = -1;
+		for (Car myCar : cars) {
+			if (myCar.getId() == id) {
+				index = cars.indexOf(myCar);
+				break;
+			}
+		}
+		if (index != -1) {
+			cars.set(index, car);
+			return car;
+		}
 		return null;
 	}
 
 	public void delete(int id) {
-
+		for (Car myCar : cars) {
+			if (myCar.getId() == id) {
+				cars.remove(myCar);
+				break;
+			}
+		}
 	}
 	
 	private int getLastId() {
