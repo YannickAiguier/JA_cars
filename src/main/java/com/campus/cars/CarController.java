@@ -56,7 +56,6 @@ public class CarController {
 	
 	@ApiOperation(value="Supprime un modèle de voiture par son Id")
 	@DeleteMapping(value="/modeles/{id}")
-	@ResponseStatus(code=HttpStatus.OK, reason = "Deleted")
 	public String deleteCar(@PathVariable int id) {
 		myCars.delete(id);
 		return "";
