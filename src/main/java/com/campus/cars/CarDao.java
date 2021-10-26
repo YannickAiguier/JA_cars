@@ -10,8 +10,9 @@ import org.springframework.stereotype.Repository;
 public class CarDao {
 
 	// Création d'une liste d'objets Car pour simuler une base de données
-	public static List<Car> cars = new ArrayList<Car>();
-	static {
+	private List<Car> cars = new ArrayList<Car>();
+
+	public CarDao() {
 		cars.add(new Car(1, new String("Peugeot"), new String("206"), new String("bleue")));
 		cars.add(new Car(2, new String("Renault"), new String("Clio"), new String("rouge")));
 		cars.add(new Car(3, new String("Ferrari"), new String("Testarossa"), new String("jaune")));
@@ -30,6 +31,41 @@ public class CarDao {
 			}
 		}
 		return null;
+	}
+
+	public Car save(Car car) {
+		Car tmpCar = new Car(getLastId()+1, car.getMarque(), car.getModele(), car.getCouleur());
+		cars.add(tmpCar);
+		return tmpCar;
+	}
+
+	public Car update(Car car, int id) {
+		int index = -1;
+		car.setId(id);
+		for (Car myCar : cars) {
+			if (myCar.getId() == id) {
+				index = cars.indexOf(myCar);
+				break;
+			}
+		}
+		if (index != -1) {
+			cars.set(index, car);
+			return car;
+		}
+		return null;
+	}
+
+	public void delete(int id) {
+		for (Car myCar : cars) {
+			if (myCar.getId() == id) {
+				cars.remove(myCar);
+				break;
+			}
+		}
+	}
+	
+	private int getLastId() {
+		return (cars.get(cars.size() - 1).getId());
 	}
 
 }
