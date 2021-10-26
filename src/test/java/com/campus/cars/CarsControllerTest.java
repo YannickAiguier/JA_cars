@@ -20,24 +20,26 @@ public class CarsControllerTest {
 		String result = "[{\"id\":1,\"marque\":\"Peugeot\",\"modele\":\"206\",\"couleur\":\"bleue\"},{\"id\":2,\"marque\":\"Renault\",\"modele\":\"Clio\",\"couleur\":\"rouge\"},{\"id\":3,\"marque\":\"Ferrari\",\"modele\":\"Testarossa\",\"couleur\":\"jaune\"}]";
 		assertThat(body).isEqualTo(result);
 	}
-	
+
 	@Test
 	public void createModelTest() {
-		
+
 	}
-	
+
 	@Test
 	public void updateModelTest() {
-		
+
 	}
-	
+
 	@Test
 	public void getModelTest() {
-		
+		String body = this.restTemplate.getForObject("/modeles/1", String.class);
+		String result = "{\"id\":1,\"marque\":\"Peugeot\",\"modele\":\"206\",\"couleur\":\"bleue\"}";
+		assertThat(body).isEqualTo(result);
 	}
-	
+
 	@Test
 	public void deleteModelTest() {
-		
+
 	}
 }
