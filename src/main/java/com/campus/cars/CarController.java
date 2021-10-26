@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
@@ -82,16 +83,24 @@ public class CarController {
 //	}
 
 	@ApiOperation(value = "Modifie un modèle de voiture")
-	@PutMapping(value = "/carss/{id}")
+	@PutMapping(value = "/cars/{id}")
 	public Car updateCar(@PathVariable int id, @RequestBody Car car) {
 		return myCars.update(car, id);
 	}
 
-	@ApiOperation(value = "Supprime un modèle de voiture par son Id")
-	@DeleteMapping(value = "/cars/{id}")
-	public String deleteCar(@PathVariable int id) {
-		myCars.delete(id);
-		return "";
+//	@ApiOperation(value = "Supprime un modèle de voiture par son Id")
+//	@DeleteMapping(value = "/cars/{id}")
+//	public String deleteCar(@PathVariable int id) {
+//		myCars.delete(id);
+//		return "";
+//	}
+	
+	@PostMapping(value="/deleteCar")
+	public String deleteCar(@RequestParam("carId") String carId) {
+	    myCars.delete(Integer.parseInt(carId));
+
+	    // Set view.      
+	    return "redirect:/cars";
 	}
 
 }

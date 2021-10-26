@@ -12,12 +12,19 @@
       <div>
          <table border="1">
             <tr>
+            	<th></th>
                <th>Marque</th>
                <th>Modèle</th>
                <th>Couleur</th>
                <th></th>
             </tr>
             <tr th:each ="car : ${cars}">
+               <td>
+               <form method="POST" th:action="@{/deleteCar}">
+               		<input type="hidden" name="carId" id="carId" th:value="${car.id}" />
+    				<button type="submit">X</button>
+			   </form>
+			   </td> 
                <td th:utext="${car.marque}">...</a></td>
                <td th:utext="${car.modele}">...</td>
                <td th:utext="${car.couleur}">...</td>
