@@ -41,6 +41,7 @@ public class CarDao {
 
 	public Car update(Car car, int id) {
 		int index = -1;
+		car.setId(id);
 		for (Car myCar : cars) {
 			if (myCar.getId() == id) {
 				index = cars.indexOf(myCar);
@@ -54,14 +55,13 @@ public class CarDao {
 		return null;
 	}
 
-	public Boolean delete(int id) {
+	public void delete(int id) {
 		for (Car myCar : cars) {
 			if (myCar.getId() == id) {
 				cars.remove(myCar);
-				return true;
+				break;
 			}
 		}
-		return false;
 	}
 	
 	private int getLastId() {
