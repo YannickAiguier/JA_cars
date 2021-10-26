@@ -8,7 +8,7 @@
    <body>
       <h1>Create a Car :</h1>
          
-      <form th:action="@{/addModele}"
+      <form th:action="@{/addCar}"
          th:object="${carForm}" method="POST">
          Marque :
          <input type="text" th:field="*{marque}" />     

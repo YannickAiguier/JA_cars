@@ -5,6 +5,7 @@ public class CarForm {
     private String modele;
     private String marque;
     private String couleur;
+    
 	public String getModele() {
 		return modele;
 	}

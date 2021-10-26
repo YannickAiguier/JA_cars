@@ -1,8 +1,5 @@
 package com.campus.cars;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +34,7 @@ public class CarController {
 		return "index";
 	}
 
-	@GetMapping(value = { "/modeles" })
+	@GetMapping(value = { "/cars" })
 	public String list(Model model) {
 		model.addAttribute("cars", myCars.findAll());
 		return "carsList";
@@ -45,20 +42,20 @@ public class CarController {
 
 	@ApiOperation(value = "Affiche les caractéristiques d'une voiture d'après son Id")
 	// indique que la méthode répondra à une requête GET
-	@GetMapping(value = "/modeles/{id}")
+	@GetMapping(value = "/cars/{id}")
 	public String show(@PathVariable int id, Model model) {
 		model.addAttribute("car", myCars.findCarById(id));
 		return "car";
 	}
 
-	@GetMapping(value = { "/addModele" })
-	public String showAddModelePage(Model model) {
+	@GetMapping(value = { "/addCar" })
+	public String showAddCarPage(Model model) {
 		CarForm carForm = new CarForm();
 		model.addAttribute("carForm", carForm);
-		return "addModele";
+		return "addCar";
 	}
 
-	@PostMapping(value = { "/addModele" })
+	@PostMapping(value = { "/addCar" })
 	public String saveCar(Model model, @ModelAttribute("carForm") CarForm carForm) {
 		
 		String modele = carForm.getModele();
@@ -70,28 +67,28 @@ public class CarController {
 			Car newCar = new Car(marque, modele, couleur);
 			myCars.save(newCar);
 
-			return "redirect:/modeles";
+			return "redirect:/cars";
 		}
 
 		model.addAttribute("errorMessage", "Modèle, Marque et Couleur requis !!");
-		return "addModele";
+		return "addCar";
 	}
 
 //	@ApiOperation(value = "Ajoute un modèle de voiture")
-//	@PostMapping(value = "/modeles")
+//	@PostMapping(value = "/cars")
 //	public Car addCar(@RequestBody Car car) {
 //		return myCars.save(car);
 //		// ici faire un redirect
 //	}
 
 	@ApiOperation(value = "Modifie un modèle de voiture")
-	@PutMapping(value = "/modeles/{id}")
+	@PutMapping(value = "/carss/{id}")
 	public Car updateCar(@PathVariable int id, @RequestBody Car car) {
 		return myCars.update(car, id);
 	}
 
 	@ApiOperation(value = "Supprime un modèle de voiture par son Id")
-	@DeleteMapping(value = "/modeles/{id}")
+	@DeleteMapping(value = "/cars/{id}")
 	public String deleteCar(@PathVariable int id) {
 		myCars.delete(id);
 		return "";
