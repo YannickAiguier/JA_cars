@@ -25,29 +25,18 @@ public class CarDao {
 
 	// retourne la voiture correspondant à id, sinon retourne null
 	public Car findCarById(int id) {
-		for (Car car : cars) {
-			if (car.getId() == id) {
-				return car;
-			}
-		}
-		return null;
+		return getCarById(id);
 	}
 
 	public Car save(Car car) {
-		Car tmpCar = new Car(getLastId()+1, car.getMarque(), car.getModele(), car.getCouleur());
+		Car tmpCar = new Car(getLastId() + 1, car.getMarque(), car.getModele(), car.getCouleur());
 		cars.add(tmpCar);
 		return tmpCar;
 	}
 
 	public Car update(Car car, int id) {
-		int index = -1;
 		car.setId(id);
-		for (Car myCar : cars) {
-			if (myCar.getId() == id) {
-				index = cars.indexOf(myCar);
-				break;
-			}
-		}
+		int index = cars.indexOf(getCarById(id));
 		if (index != -1) {
 			cars.set(index, car);
 			return car;
@@ -56,16 +45,20 @@ public class CarDao {
 	}
 
 	public void delete(int id) {
-		for (Car myCar : cars) {
-			if (myCar.getId() == id) {
-				cars.remove(myCar);
-				break;
-			}
-		}
+		cars.remove(getCarById(id));
 	}
-	
+
 	private int getLastId() {
 		return (cars.get(cars.size() - 1).getId());
+	}
+
+	private Car getCarById(int id) {
+		for (Car car : cars) {
+			if (car.getId() == id) {
+				return car;
+			}
+		}
+		return null;
 	}
 
 }
