@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -50,11 +51,38 @@ public class CarController {
 		return "car";
 	}
 
-	@ApiOperation(value = "Ajoute un modèle de voiture")
-	@PostMapping(value = "/modeles")
-	public Car addCar(@RequestBody Car car) {
-		return myCars.save(car);
+	@GetMapping(value = { "/addModele" })
+	public String showAddModelePage(Model model) {
+		CarForm carForm = new CarForm();
+		model.addAttribute("carForm", carForm);
+		return "addModele";
 	}
+
+	@PostMapping(value = { "/addModele" })
+	public String saveCar(Model model, @ModelAttribute("carForm") CarForm carForm) {
+		
+		String modele = carForm.getModele();
+		String marque = carForm.getMarque();
+		String couleur = carForm.getCouleur();
+
+		if (modele != null && modele.length() > 0 //
+				&& marque != null && marque.length() > 0 && couleur != null && couleur.length() > 0) {
+			Car newCar = new Car(marque, modele, couleur);
+			myCars.save(newCar);
+
+			return "redirect:/modeles";
+		}
+
+		model.addAttribute("errorMessage", "Modèle, Marque et Couleur requis !!");
+		return "addModele";
+	}
+
+//	@ApiOperation(value = "Ajoute un modèle de voiture")
+//	@PostMapping(value = "/modeles")
+//	public Car addCar(@RequestBody Car car) {
+//		return myCars.save(car);
+//		// ici faire un redirect
+//	}
 
 	@ApiOperation(value = "Modifie un modèle de voiture")
 	@PutMapping(value = "/modeles/{id}")
