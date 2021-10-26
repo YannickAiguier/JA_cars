@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+// annotation swagger pour personnaliser le message de descritpion du controller
+@Api(description="API pour les opérations CRUD sur les modèles de voitures")
 //annotation qui combine @Controller (gère les requêtes http) et @ResponseBody (lie la valeur de retour au corps de la réponse http, convertit l'objet renvoyé en JSON) 
 @RestController
 public class CarController {
@@ -21,6 +26,8 @@ public class CarController {
 	@Autowired
 	private CarDao myCars;
 	
+	// annotation swagger pour personnaliser la description du end-point
+	@ApiOperation(value="Affiche la liste des modèles de voitures")
 	// indique que la méthode répondra à une requête GET
 	// équivalent à @RequestMapping(method=RequestMethod.GET,value=...)
 	@GetMapping(value={"/", "/modeles"})
@@ -28,24 +35,27 @@ public class CarController {
 		return myCars.findAll();
 	}
 	
+	@ApiOperation(value="Affiche les caractéristiques d'une voiture d'après son Id")
 	// indique que la méthode répondra à une requête GET
 	@GetMapping(value="/modeles/{id}")
 	public Car show(@PathVariable int id) {
 		return myCars.findCarById(id);
 	}
 	
+	@ApiOperation(value="Ajoute un modèle de voiture")
 	@PostMapping(value="/modeles")
 	public Car addCar(@RequestBody Car car) {
 		return myCars.save(car);
 	}
 	
+	@ApiOperation(value="Modifie un modèle de voiture")
 	@PutMapping(value="/modeles/{id}")
 	public Car updateCar(@PathVariable int id, @RequestBody Car car) {
 		return myCars.update(car, id);
 	}
 	
+	@ApiOperation(value="Supprime un modèle de voiture par son Id")
 	@DeleteMapping(value="/modeles/{id}")
-	@ResponseStatus(code=HttpStatus.OK, reason = "Deleted")
 	public String deleteCar(@PathVariable int id) {
 		myCars.delete(id);
 		return "";
