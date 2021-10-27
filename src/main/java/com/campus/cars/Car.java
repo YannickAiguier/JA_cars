@@ -1,8 +1,19 @@
 package com.campus.cars;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 //la classe des voitures
+
+@Entity
 public class Car {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
 	private String marque;
 	private String modele;
 	private String couleur;
@@ -18,6 +29,10 @@ public class Car {
 		this.marque = marque;
 		this.modele = modele;
 		this.couleur = couleur;
+	}
+	
+	public Car() {
+		
 	}
 
 	/**
