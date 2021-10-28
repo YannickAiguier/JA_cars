@@ -2,6 +2,8 @@ package com.campus.cars;
 
 
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 
@@ -23,7 +25,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(description="API pour les opérations CRUD sur les modèles de voitures")
 //annotation qui combine @Controller (gère les requêtes http) et @ResponseBody (lie la valeur de retour au corps de la réponse http, convertit l'objet renvoyé en JSON) 
 @RestController
-@Validated
+//@Validated
 public class CarController {
 	
 	// instancie automatiquement un objet de la classe indiquée
@@ -50,7 +52,7 @@ public class CarController {
 	
 	@ApiOperation(value="Ajoute un modèle de voiture")
 	@PostMapping(value="/modeles")
-	public Car addCar(@RequestBody Car car) {
+	public Car addCar(@Valid @RequestBody Car car) {
 		return myCars.save(car);
 	}
 	
