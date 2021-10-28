@@ -5,7 +5,6 @@ package com.campus.cars;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -67,6 +66,14 @@ public class CarController {
 	public String deleteCar(@PathVariable int id) {		
 		myCars.deleteById(id);
 		return "";
+	}
+	
+	// exemple d'un endpoint perso (requête effectuée via nom de méthode)
+	@GetMapping(value="/modeles/{marque}/{modele}")
+	public Car getModele(@PathVariable("marque") String marque, @PathVariable("modele") String modele) {
+		Car car = myCars.findByMarqueAndModele(marque, modele);
+		if (car == null) throw new carNotFoundException("La voiture de marque " + marque + " et de modèle " + modele + " est INTROUVABLE !");
+		return car;
 	}
 
 }
