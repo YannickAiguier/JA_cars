@@ -1,6 +1,10 @@
 package com.campus.cars;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +21,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(description="API pour les opérations CRUD sur les modèles de voitures")
 //annotation qui combine @Controller (gère les requêtes http) et @ResponseBody (lie la valeur de retour au corps de la réponse http, convertit l'objet renvoyé en JSON) 
 @RestController
+@Validated
 public class CarController {
 	
 	// instancie automatiquement un objet de la classe indiquée

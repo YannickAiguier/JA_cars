@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
 
 //la classe des voitures
 
@@ -14,8 +17,14 @@ public class Car {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
+	@Length(min=2, max=20, message="La marque doit contenir de 2 à 20 caractères")
+	@NotBlank
 	private String marque;
+	
+	@NotBlank
 	private String modele;
+	
+	@NotBlank
 	private String couleur;
 	
 	/**
