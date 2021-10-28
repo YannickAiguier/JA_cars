@@ -33,30 +33,31 @@ public class CarController {
 		return myCars.findAll();
 	}
 	
-//	@ApiOperation(value="Affiche les caractéristiques d'une voiture d'après son Id")
-//	// indique que la méthode répondra à une requête GET
-//	@GetMapping(value="/modeles/{id}")
-//	public Car show(@PathVariable int id) {
-//		return myCars.findCarById(id);
-//	}
-//	
-//	@ApiOperation(value="Ajoute un modèle de voiture")
-//	@PostMapping(value="/modeles")
-//	public Car addCar(@RequestBody Car car) {
-//		return myCars.save(car);
-//	}
-//	
-//	@ApiOperation(value="Modifie un modèle de voiture")
-//	@PutMapping(value="/modeles/{id}")
-//	public Car updateCar(@PathVariable int id, @RequestBody Car car) {
-//		return myCars.update(car, id);
-//	}
-//	
-//	@ApiOperation(value="Supprime un modèle de voiture par son Id")
-//	@DeleteMapping(value="/modeles/{id}")
-//	public String deleteCar(@PathVariable int id) {
-//		myCars.delete(id);
-//		return "";
-//	}
+	@ApiOperation(value="Affiche les caractéristiques d'une voiture d'après son Id")
+	// indique que la méthode répondra à une requête GET
+	@GetMapping(value="/modeles/{id}")
+	public Car show(@PathVariable int id) {
+		return  myCars.findById(id);
+	}
+	
+	@ApiOperation(value="Ajoute un modèle de voiture")
+	@PostMapping(value="/modeles")
+	public Car addCar(@RequestBody Car car) {
+		return myCars.save(car);
+	}
+	
+	@ApiOperation(value="Modifie un modèle de voiture")
+	@PutMapping(value="/modeles/{id}")
+	public Car updateCar(@PathVariable int id, @RequestBody Car car) {
+		return myCars.save(car);
+	}
+	
+	@ApiOperation(value="Supprime un modèle de voiture par son Id")
+	@DeleteMapping(value="/modeles/{id}")
+	public String deleteCar(@PathVariable int id) {
+		Car tmpCar = myCars.findById(id);
+		myCars.delete(tmpCar);
+		return "";
+	}
 
 }

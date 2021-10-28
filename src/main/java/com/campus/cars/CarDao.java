@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 //indique à Spring qu'il s'agit d'une classe qui gère des données
 @Repository
 public interface CarDao extends JpaRepository<Car, Integer>{
+	
+	Car findById(int id);
 
 //	// Création d'une liste d'objets Car pour simuler une base de données
 //	private List<Car> cars = new ArrayList<Car>();
