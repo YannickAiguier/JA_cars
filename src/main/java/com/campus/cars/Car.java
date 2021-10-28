@@ -27,6 +27,10 @@ public class Car {
 		this.modele = modele;
 		this.couleur = couleur;
 	}
+	
+	public Car() {
+		
+	}
 
 	/**
 	 * @return the id
