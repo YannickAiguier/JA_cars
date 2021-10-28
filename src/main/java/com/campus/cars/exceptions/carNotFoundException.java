@@ -1,5 +1,9 @@
 package com.campus.cars.exceptions;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(HttpStatus.NOT_FOUND)
 public class carNotFoundException extends RuntimeException {
 	
 	public carNotFoundException(String s) {
