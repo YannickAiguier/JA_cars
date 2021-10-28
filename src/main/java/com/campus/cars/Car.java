@@ -1,7 +1,15 @@
 package com.campus.cars;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 //la classe des voitures
+@Entity
 public class Car {
+	
+	@Id
+	@GeneratedValue
 	private int id;
 	private String marque;
 	private String modele;
