@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.campus.cars.exceptions.carNotFoundException;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -41,7 +43,9 @@ public class CarController {
 	// indique que la méthode répondra à une requête GET
 	@GetMapping(value="/modeles/{id}")
 	public Car show(@PathVariable int id) {
-		return myCars.findById(id);
+		Car car = myCars.findById(id);
+		if (car == null) throw new carNotFoundException("La voiture avec l'id " + id + " est INTROUVABLE !");
+		return car;
 	}
 	
 	@ApiOperation(value="Ajoute un modèle de voiture")
