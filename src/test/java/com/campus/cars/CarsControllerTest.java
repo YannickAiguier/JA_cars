@@ -28,11 +28,18 @@ public class CarsControllerTest {
 
 	@Test
 	public void createModelTest() {
-		String body = this.restTemplate.postForObject("/modeles",
-				"{\"marque\": \"Citroën\",\"modele\": \"Xm\",\"couleur\": \"vert\"}", String.class);
-		ResponseEntity<String> response = restTemplate.postForEntity("/modeles",
-				"{\"marque\": \"Citroën\",\"modele\": \"Xm\",\"couleur\": \"vert\"}", String.class);
-		assertThat(response.getStatusCode().equals(HttpStatus.CREATED));
+		Car car = new Car("Toyota", "Corolla", "rose");
+		Car newCar = this.restTemplate.postForObject("/modeles", car, Car.class);
+		newCar = this.restTemplate.postForObject("/modeles", car, Car.class);
+		assertThat(newCar.getId()).isEqualTo(4);
+		assertThat(newCar.getMarque()).isEqualTo("Toyota");
+		ResponseEntity<String> respEntity = this.restTemplate.postForEntity("/modeles", car, String.class);
+		assertThat(respEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+//		String body = this.restTemplate.postForObject("/modeles",
+//				"{\"marque\": \"Citroën\",\"modele\": \"Xm\",\"couleur\": \"vert\"}", String.class);
+//		ResponseEntity<String> response = restTemplate.postForEntity("/modeles",
+//				"{\"marque\": \"Citroën\",\"modele\": \"Xm\",\"couleur\": \"vert\"}", String.class);
+//		assertThat(response.getStatusCode().equals(HttpStatus.CREATED));
 	}
 
 	@Test

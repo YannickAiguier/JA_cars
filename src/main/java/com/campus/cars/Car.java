@@ -40,6 +40,12 @@ public class Car {
 		this.couleur = couleur;
 	}
 	
+	public Car(String marque, String modele, String couleur) {
+		this.marque = marque;
+		this.modele = modele;
+		this.couleur = couleur;
+	}
+	
 	public Car() {
 		
 	}
