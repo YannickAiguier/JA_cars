@@ -2,14 +2,14 @@ package com.campus.cars;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import javax.persistence.GenerationType;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 
 //la classe des voitures
-
 @Entity
 public class Car {
 	
