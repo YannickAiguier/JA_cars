@@ -8,6 +8,6 @@ CREATE TABLE car (
 );
 
 INSERT INTO car (marque, modele, couleur) VALUES
-  ('Peugeot', '206', 'rouge'),
-  ('Renault', 'Clio', 'bleue'),
+  ('Peugeot', '206', 'bleue'),
+  ('Renault', 'Clio', 'rouge'),
   ('Ferrari', 'Testarossa', 'jaune');

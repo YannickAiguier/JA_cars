@@ -27,16 +27,16 @@ public class CarsControllerTest {
 	@Test
 	public void createModelTest() {
 		String body = this.restTemplate.postForObject("/modeles",
-				"{\"marque\": \"Citroën\",\"modele\": \"Berlingo\",\"couleur\": \"vert\"}", String.class);
+				"{\"marque\": \"Citroën\",\"modele\": \"Xm\",\"couleur\": \"vert\"}", String.class);
 		ResponseEntity<String> response = restTemplate.postForEntity("/modeles",
-				"{\"marque\": \"Citroën\",\"modele\": \"Berlingo\",\"couleur\": \"vert\"}", String.class);
+				"{\"marque\": \"Citroën\",\"modele\": \"Xm\",\"couleur\": \"vert\"}", String.class);
 		assertThat(response.getStatusCode().equals(HttpStatus.CREATED));
 	}
 
 	@Test
 	public void updateModelTest() {
 		ResponseEntity<String> response = restTemplate.postForEntity("/modeles",
-				"{\"marque\": \"Citroën\",\"modele\": \"Berlingo\",\"couleur\": \"beige\"}", String.class);
+				"{\"marque\": \"Citroën\",\"modele\": \"Xm\",\"couleur\": \"beige\"}", String.class);
 		assertThat(response.getStatusCode().equals(HttpStatus.OK));
 	}
 
