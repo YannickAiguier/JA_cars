@@ -2,6 +2,8 @@ package com.campus.cars;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,9 +19,11 @@ public class CarsControllerTest {
 
 	@Test
 	public void getAllModelsTest() {
-		String body = this.restTemplate.getForObject("/modeles", String.class);
-		String result = "[{\"id\":1,\"marque\":\"Peugeot\",\"modele\":\"206\",\"couleur\":\"bleue\"},{\"id\":2,\"marque\":\"Renault\",\"modele\":\"Clio\",\"couleur\":\"rouge\"},{\"id\":3,\"marque\":\"Ferrari\",\"modele\":\"Testarossa\",\"couleur\":\"jaune\"}]";
-		assertThat(body).isEqualTo(result);
+		CarList cars = new CarList();
+		cars.setCarList(this.restTemplate.getForObject("/modeles", List.class));
+		assertThat(cars.getCarList().size()).isEqualTo(3);
+		ResponseEntity<String> respEntity = this.restTemplate.getForEntity("/modeles", String.class);
+		assertThat(respEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 
 	@Test
